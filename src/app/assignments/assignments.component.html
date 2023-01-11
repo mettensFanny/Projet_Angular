@@ -1,8 +1,8 @@
-<main class="container">
 
+<main class="container">
   <div class="AjouterBtn">
     <a routerLink="/add">
-      <button mat-flat-button color="accent">
+      <button mat-flat-button color="accent" [disabled]="!isConnected()">
         Ajouter Assignment
       </button>
     </a>

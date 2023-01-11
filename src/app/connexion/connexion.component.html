@@ -1,0 +1,16 @@
+<form ngForm *ngIf="!this.estConnecte" (submit)="login(); connexionForm.reset()" #connexionForm  class="form">
+    <mat-form-field>
+        <input matInput  [(ngModel)]="identifiant" name="login" placeholder="login" required>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput  [(ngModel)]="motDePasse" name="mdp" placeholder="mot de passe"  type="password" required>
+    </mat-form-field>
+
+    <button mat-flat-button  color="accent">
+        Connexion
+    </button>
+</form>
+
+
+
+<button mat-flat-button *ngIf="this.estConnecte" color="accent" (click)="login()" class="btnDeconexion">Deconexion</button>

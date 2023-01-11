@@ -44,7 +44,7 @@ onSaveAssignment() {
   this.assignmentsService
     .updateAssignment(this.assignment)
     .subscribe((message) => {
-      console.log(message);
+      //console.log(message);
 
       // navigation vers la home page
       this.router.navigate(['/home']);

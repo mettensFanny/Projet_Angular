@@ -13,8 +13,8 @@ export class AssignmentsService {
   constructor(private logginService:LoggingService,
               private http:HttpClient) { }
 
- //uri = "http://localhost:8010/api/assignments";
- uri = "https://projet-angular-backend.onrender.com/api/assignments";
+ uri = "http://localhost:8010/api/assignments";
+ //uri = "https://projet-angular-backend.onrender.com/api/assignments";
 
   getAssignments():Observable<Assignment[]> {
     return this.http.get<Assignment[]>(this.uri)
@@ -30,7 +30,7 @@ export class AssignmentsService {
 
     console.log("getAssignment id= " + id + " nom = " + a.nom)*/
     //return of(a);
-    console.log("get by id id = "+id)
+    //console.log("get by id id = "+id)
     return this.http.get<Assignment>(this.uri + "/" + id)
   }
 
@@ -43,23 +43,28 @@ export class AssignmentsService {
     return this.http.post<Assignment>(this.uri, assignment);
   }
 
-  updateAssignment(assignment:Assignment):Observable<string> {
+  updateAssignment(assignment:Assignment):Observable<any> {
     // On n'a besoin de rien faire pour le moment, puisque l'assignment est passé par référence
     // et que l'objet est modifié dans le tableau
     // Plus tard on utilisera un Web Service distant...
-    this.logginService.log(assignment.nom, "modifié !");
+    //this.logginService.log(assignment.nom, "modifié !");
 
-    return of("Assignment modifié");
+    //return of("Assignment modifié");
+    return this.http.put<Assignment>(this.uri, assignment);
   }
 
-  deleteAssignement(assignment:Assignment) :Observable<string> {
-    let pos = this.assignments.indexOf(assignment);
-    this.assignments.splice(pos, 1);
+  //deleteAssignement(assignment:Assignment) :Observable<string> {
+    //let pos = this.assignments.indexOf(assignment);
+    //this.assignments.splice(pos, 1);
 
-    this.logginService.log(assignment.nom, "supprimé !");
+    //this.logginService.log(assignment.nom, "supprimé !");
 
 
-    return of("Assignment supprimé")
+    //return of("Assignment supprimé")
+  //}
+  deleteAssignement(assignment:Assignment) :Observable<any> {
+    let deleteURI = this.uri + "/" + assignment._id;
+    return this.http.delete(deleteURI);
   }
 
 }

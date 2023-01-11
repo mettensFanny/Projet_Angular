@@ -30,6 +30,7 @@ export class AssignmentsDetailsComponent implements OnInit {
     });
   }
 
+  //
   onAssignmentRendu() {
     if (!this.assignmentTransmis) return;
 
@@ -38,10 +39,11 @@ export class AssignmentsDetailsComponent implements OnInit {
     this.assignmentService
       .updateAssignment(this.assignmentTransmis)
       .subscribe((message) => {
-        console.log(message);
+        //console.log(message);
         this.router.navigate(['/home']);
       });
   }
+  //
 
   onDelete() {
     if (!this.assignmentTransmis) return;
@@ -55,7 +57,15 @@ export class AssignmentsDetailsComponent implements OnInit {
       });
   }
 
+  //fonction qui check le status admin
   isAdmin():boolean {
+    return this.authService.loggedInAdmin;
+  }
+
+  //fonction qui check le status connecté
+  isConnected():boolean {
     return this.authService.loggedIn;
   }
+  
+
 }

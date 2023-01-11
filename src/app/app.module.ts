@@ -24,6 +24,7 @@ import { AddAssignmentComponent } from './assignments/add-assignment/add-assignm
 import { RouterModule, Routes } from '@angular/router';
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import { AuthGuard } from './shared/auth.guard';
+import { ConnexionComponent } from './connexion/connexion.component';
 
 const routes:Routes = [
   {path: '', component: AssignmentsComponent},
@@ -39,10 +40,12 @@ const routes:Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    AssignmentsComponent, AssignmentsDetailsComponent,
+    AssignmentsComponent, 
+    AssignmentsDetailsComponent,
     RenduDirective,
     AddAssignmentComponent,
     EditAssignmentComponent,
+    ConnexionComponent,
   ],
   imports: [
     BrowserModule,

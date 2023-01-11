@@ -19,7 +19,7 @@ export class AddAssignmentComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log(this.nomDevoir + ' a rendre le ' + this.dateDeRendu);
+    //console.log(this.nomDevoir + ' a rendre le ' + this.dateDeRendu);
     const newAssignment = new Assignment();
     newAssignment.nom = this.nomDevoir;
     newAssignment.dateDeRendu = this.dateDeRendu;

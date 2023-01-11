@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AssignmentsService } from '../shared/assignments.service';
 import { Assignment } from './assignment.model';
+import { AuthService } from 'src/app/shared/auth.service';
 
 @Component({
   selector: 'app-assignments',
@@ -14,7 +15,7 @@ export class AssignmentsComponent implements OnInit {
 
   assignmentSelectionne!: Assignment;
 
-  constructor(private assignmentsService: AssignmentsService) {}
+  constructor(private assignmentsService: AssignmentsService,private authService:AuthService) {}
 
   ngOnInit(): void {
     this.assignmentsService
@@ -26,5 +27,10 @@ export class AssignmentsComponent implements OnInit {
 
   onAssignmentClicke(assignment: Assignment) {
     this.assignmentSelectionne = assignment;
+  }
+
+  //fonction qui check le status connecté
+  isConnected():boolean {
+    return this.authService.loggedIn;
   }
 }
