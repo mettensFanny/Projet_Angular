@@ -1,4 +1,3 @@
-
 <main class="container">
   <div class="AjouterBtn">
     <a routerLink="/add">
@@ -8,23 +7,80 @@
     </a>
   </div>
 
+
   <h1>Liste des devoirs à rendre (assignments) :</h1>
+  <div>
+    <table mat-table [dataSource]="assignments" class="tableAssignment">
+      <ng-container *ngFor="let column of columns" [matColumnDef]="column.nom">
+
+        <th mat-header-cell *matHeaderCellDef>
+          {{column.nom}}
+        </th>
+
+        <td mat-cell *matCellDef="let row">
+          <div *ngIf="(column.nom == ' '); else colonneNonModif">          
+            <a  routerLink="/assignment/{{row.id}}">Détails</a>
+          </div>
+          <ng-template #colonneNonModif>
+            {{column.cell(row)}}
+          </ng-template>
+        </td>
+
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    
+    <mat-paginator  [pageSize]="10" [pageSizeOptions]="[1,5,10,20]" showFirstLastButtons>
+    </mat-paginator>
+  </div>
+  
+
+
+
+
+
+
+
+
+
+
+  <!-- <pre> </pre> ajoute un espace, oui c'est moche, oui le reste idée que j'ai trouvées ne fonctionne pas-->
+<!--
   <mat-list *ngFor="let a of assignments">
     <nav><a routerLink="/assignment/{{a.id}}">
-        <h3 mat-subheader>{{a.dateDeRendu|date}}</h3>
+        <h3 mat-subheader> {{a.nom}} ({{a.matiere}})</h3>
+
         <mat-list-item (click)="onAssignmentClicke(a)">
-          <p *ngIf="a.rendu; else nonsoumis">
-            {{a.nom}}
-            rendu : {{a.rendu}}.
+          <p>
+            {{a.nom}},
           </p>
+          <pre> </pre>
+          <p *ngIf="a.rendu; else nonsoumis">
+            à été rendu.
+          </p>
+
           <ng-template #nonsoumis>
+            <p *ngIf="dateEstDepassee(a.dateDeRendu|date:'dd/MM/yyy', dateAujourdui|date:'dd/MM/yyy'); else nonrendu">
+              n'a pas été encore été rendu        
+            </p>
+            <pre> </pre>
             <p>
-              {{a.nom}}, n'a pas été rendu à temps
-              (date : {{a.dateDeRendu|date}})
+               (date de rendu : {{a.dateDeRendu|date}})
             </p>
           </ng-template>
+
+          <ng-template #nonrendu>
+            <p>
+              n'a pas été rendu à temps
+            </p>
+          </ng-template>
+
           <mat-divider></mat-divider>
         </mat-list-item>
       </a></nav>
   </mat-list>
+  -->
 </main>

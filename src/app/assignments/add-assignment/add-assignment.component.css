@@ -3,3 +3,6 @@
   flex-direction: column;
   margin: 5px;
 }
+mat-select{
+  padding: 10 px;
+}

@@ -1,9 +1,7 @@
-.form, .btnDeconexion {
-  position: absolute;
-  top: 1%;
-  right: 1%;
+.form {
+    margin-top: 0.25%;
 }
 
 .btnDeconexion {
-  top: 3%;
+    margin-top: 10%;
 }

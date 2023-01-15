@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   loggedIn=false;
-  loggedInAdmin=false;//loggedInAdmin fera la distinctien entre un login simple et un login admin
+  loggedInAdmin=false;//loggedInAdmin fera la distinction entre un login simple et un login admin
+
 
   constructor() { }
 

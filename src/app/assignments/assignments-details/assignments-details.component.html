@@ -1,10 +1,12 @@
 <div class="container">
   <mat-card *ngIf="assignmentTransmis">
-    <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
+    <mat-card-title>{{assignmentTransmis.nom}} ({{assignmentTransmis.matiere}})</mat-card-title>
     <mat-card-subtitle>{{assignmentTransmis.dateDeRendu|date}}</mat-card-subtitle>
-
+    <p>Remarques : {{assignmentTransmis.remarques}}</p>
+    <p>Note : {{assignmentTransmis.note}}</p>
     <div id="bottom">
-      <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()">
+      <!--Note sur 20, on ne peut marquer "rendu" un Assignment qui n'a pas été noté.-->
+      <mat-checkbox *ngIf="(!assignmentTransmis.rendu) && (estNote(assignmentTransmis.note))" (click)="onAssignmentRendu()">
         Devoir rendu
       </mat-checkbox>
       <nav><a routerLink="/assignment/{{assignmentTransmis.id}}/edit">

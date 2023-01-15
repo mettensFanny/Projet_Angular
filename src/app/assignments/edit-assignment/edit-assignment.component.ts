@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { Assignment } from '../assignment.model';
+import { Matieres } from '../matieres';
 
 @Component({
  selector: 'app-edit-assignment',
@@ -9,8 +10,13 @@ import { Assignment } from '../assignment.model';
  styleUrls: ['./edit-assignment.component.css'],
 })
 export class EditAssignmentComponent implements OnInit {
+ lstMatieres!: string[];
  assignment!: Assignment | undefined;
  nomAssignment!: string;
+ matiereChoisie!: string;
+ noteAssignment!: string;
+ remarqueAssignment!: string;
+ auteurAssignment!: string;
  dateDeRendu!: Date;
 
  constructor(
@@ -21,7 +27,15 @@ export class EditAssignmentComponent implements OnInit {
 
  ngOnInit(): void {
    this.getAssignment();
+   this.lstMatieres = Object.keys(Matieres);
+
  }
+
+
+ test():void{
+  console.log(this.lstMatieres);
+}
+
  getAssignment() {
   // on récupère l'id dans le snapshot passé par le routeur
   // le "+" force l'id de type string en "number"
@@ -33,6 +47,10 @@ export class EditAssignmentComponent implements OnInit {
     // Pour pré-remplir le formulaire
     this.nomAssignment = assignment.nom;
     this.dateDeRendu = assignment.dateDeRendu;
+    this.auteurAssignment = assignment.auteur;
+    this.remarqueAssignment = assignment.remarques;
+    this.noteAssignment = assignment.note;
+    this.matiereChoisie = assignment.matiere;
   });
 }
 onSaveAssignment() {
@@ -41,6 +59,11 @@ onSaveAssignment() {
   // on récupère les valeurs dans le formulaire
   this.assignment.nom = this.nomAssignment;
   this.assignment.dateDeRendu = this.dateDeRendu;
+  this.assignment.note = this.noteAssignment;
+  this.assignment.remarques = this.remarqueAssignment;
+  this.assignment.auteur = this.auteurAssignment;
+  this.assignment.matiere = this.matiereChoisie;
+
   this.assignmentsService
     .updateAssignment(this.assignment)
     .subscribe((message) => {
@@ -50,4 +73,5 @@ onSaveAssignment() {
       this.router.navigate(['/home']);
     });
 }
+
 }

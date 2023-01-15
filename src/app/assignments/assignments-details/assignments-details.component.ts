@@ -66,6 +66,11 @@ export class AssignmentsDetailsComponent implements OnInit {
   isConnected():boolean {
     return this.authService.loggedIn;
   }
-  
+
+  //savoir si l'assignment a été noté
+  //Note sur 20, on ne peut marquer "rendu" un Assignment qui n'a pas été noté.
+  estNote(note : string){
+    return note != "non rendu";
+  }
 
 }
